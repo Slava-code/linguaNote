@@ -613,7 +613,7 @@ body {
     background-color: #f8f8f8;
     padding: 80px 20px;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 0;
 }
 
 .cta-title {
@@ -668,6 +668,10 @@ body {
     white-space: nowrap;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .floating-block:hover {
@@ -676,4 +680,32 @@ body {
 
 .content-section .much-more {
     color: #6e6868;
+}
+
+.reset-blocks-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #90EE90;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.reset-blocks-btn:hover {
+    background-color: #7FDD7F;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.reset-blocks-btn:active {
+    transform: scale(0.95);
 }
