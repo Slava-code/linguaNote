@@ -269,7 +269,7 @@ body {
 
 .content-section {
     max-width: 900px;
-    margin: 80px auto 0;
+    margin: 0px auto 0;
     padding: 40px 20px;
     line-height: 1.6;
 }
@@ -302,18 +302,20 @@ body {
 }
 
 .tagline {
+    font-weight:  bold;
     font-size: 1.3rem !important;
     font-style: italic;
     text-align: center;
-    color: #007AFF !important;
+    color: #2269b6 !important;
     margin: 20px 0 30px !important;
 }
 
 .quote {
+    font-weight: bold;
     font-style: italic;
     font-size: 1.2rem !important;
     text-align: center;
-    color: #007AFF !important;
+    color: #2269b6 !important;
     margin: 25px 0 !important;
     padding: 20px;
     background: rgba(50, 205, 50, 0.1);
@@ -321,11 +323,12 @@ body {
 }
 
 .example {
-    background: #f8f8f8;
+    font-weight: bold;
+    background: #ffffff;
     padding: 15px;
     border-radius: 8px;
     font-family: 'Courier New', monospace;
-    color: #007AFF !important;
+    color: #2269b6 !important;
     border-left: 4px solid #32CD32;
 }
 
