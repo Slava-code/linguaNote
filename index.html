@@ -16,12 +16,12 @@
         </header>
         
         <main class="main-content">
-            <h1 class="main-title">The AI notepad that speaks YOUR language</h1>
-            <h2 class="main-subtitle">LinguaNote takes multilingual chaos and creates perfect clarity</h2>
-            <a href="#" class="download-btn">Download for Mac</a>
+            <h1 class="main-title fade-in-element">The AI notepad that speaks YOUR language</h1>
+            <h2 class="main-subtitle fade-in-element">LinguaNote takes multilingual chaos and creates perfect clarity</h2>
+            <a href="#" class="download-btn scale-in">Download for Mac</a>
             
             <div class="blocks-section">
-                <div class="block-container">
+                <div class="block-container slide-in-left">
                     <h3 class="block-title">Your notes + transcript</h3>
                     <div class="block">
                         <div class="block-circles">
@@ -37,9 +37,9 @@
                     </div>
                 </div>
                 
-                <div class="arrow plus">+</div>
+                <div class="arrow plus fade-in-element">+</div>
                 
-                <div class="block-container">
+                <div class="block-container slide-in-right">
                     <h3 class="block-title">Multilingual communication</h3>
                     <div class="block right">
                         <div class="meeting-header">
@@ -59,9 +59,9 @@
             </div>
             
             <div class="how-it-works">
-                <h2>How it works</h2>
+                <h2 class="fade-in-element">How it works</h2>
                 <div class="blocks-section">
-                    <div class="block-container">
+                    <div class="block-container slide-in-left">
                         <h3 class="block-title">Listen to a speaker in an unfamiliar language</h3>
                         <div class="block listening-block">
                             <div class="meeting-header">
@@ -77,9 +77,9 @@
                         </div>
                     </div>
                     
-                    <div class="arrow">></div>
+                    <div class="arrow fade-in-element">></div>
                     
-                    <div class="block-container">
+                    <div class="block-container slide-in-right" id="typing-block">
                         <h3 class="block-title">Get live translated notes in a language of your choice</h3>
                         <div class="block block-translated">
                             <div class="language-selector">
@@ -227,30 +227,78 @@
                 }, 10);
             }
             
-            // Start with English by default
-            setTimeout(typeNote, 1000);
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        
+                        // Start typing animation when the typing block comes into view
+                        if (entry.target.id === 'typing-block') {
+                            setTimeout(typeNote, 500);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Add animation classes to content section elements
+            document.addEventListener('DOMContentLoaded', () => {
+                // Add fade-in-element to all h2, h3, h4, p, ul, div.benefits, table elements in content-section
+                const contentSection = document.querySelector('.content-section');
+                if (contentSection) {
+                    const elementsToAnimate = contentSection.querySelectorAll('h2:not(.fade-in-element), h3, h4, p:not(.fade-in-element), ul:not(.fade-in-element), .benefits, .user-table, .example, .quote');
+                    elementsToAnimate.forEach(el => {
+                        if (!el.classList.contains('fade-in-element')) {
+                            el.classList.add('fade-in-element');
+                        }
+                    });
+                }
+            });
+
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Re-observe elements after DOM content is loaded
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+                    observer.observe(el);
+                });
+            }, 100);
+
+            // Also observe the typing block specifically
+            const typingBlock = document.getElementById('typing-block');
+            if (typingBlock) {
+                observer.observe(typingBlock);
+            }
         </script>
 
-        <section class="content-section">
+        <section class="content-section fade-in-element">
             <h2>But I already use another app...</h2>
-            <p>While Current popular apps are already productivity powerhouses, they're limited to:</p>
-            <ul>
+            <p class="fade-in-element">While Current popular apps are already productivity powerhouses, they're limited to:</p>
+            <ul class="fade-in-element">
                 <li>English-language meetings</li>
                 <li>Post-meeting enhancement only</li>
                 <li>No real-time transcription or accessibility support</li>
             </ul>
 
-            <p>Which means they leave out:</p>
-            <ul>
+            <p class="fade-in-element">Which means they leave out:</p>
+            <ul class="fade-in-element">
                 <li>Multilingual teams</li>
                 <li>International students and founders</li>
                 <li>Deaf and hard-of-hearing users</li>
                 <li>Anyone who benefits from real-time understanding</li>
             </ul>
 
-            <h2>🌐 Introducing LinguaNote</h2>
-            <p class="tagline">"The same note-taking you love — now in every language, with real-time caption support."</p>
-            <p>LinguaNote extends the current experience by layering in AI-powered translation and real-time captioning, making it the first true multilingual notetaking assistant that works across Zoom, Meet, Teams, and any desktop workflow — with zero disruption.</p>
+            <h2 class="fade-in-element">🌐 Introducing LinguaNote</h2>
+            <p class="tagline fade-in-element">"The same note-taking you love — now in every language, with real-time caption support."</p>
+            <p class="fade-in-element">LinguaNote extends the current experience by layering in AI-powered translation and real-time captioning, making it the first true multilingual notetaking assistant that works across Zoom, Meet, Teams, and any desktop workflow — with zero disruption.</p>
 
             <h3>🧩 Feature 1: Real-Time Caption + Translation Layer</h3>
             <p><strong>Understand what's said — live, in your language.</strong></p>
