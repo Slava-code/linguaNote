@@ -38,23 +38,22 @@
                     </div>
                 </div>
                 
-                <div class="arrow">></div>
+                <div class="arrow plus">+</div>
                 
                 <div class="block-container">
                     <h3 class="block-title">Multilingual communication</h3>
                     <div class="block right">
-                        <div class="block-circles">
-                            <div class="circle red"></div>
-                            <div class="circle yellow"></div>
-                            <div class="circle green"></div>
+                        <div class="meeting-header">
+                            <span class="meeting-title">Meeting</span>
+                            <div class="recording-indicator"></div>
                         </div>
                         <div class="block-grid">
-                            <div class="grid-item"></div>
-                            <div class="grid-item"></div>
-                            <div class="grid-item"></div>
-                            <div class="grid-item"></div>
-                            <div class="grid-item"></div>
-                            <div class="grid-item"></div>
+                            <div class="grid-item"><img src="images/gettyimages-1295073567-640x640.jpg" alt="Person 1"></div>
+                            <div class="grid-item"><img src="images/istockphoto-1329932069-612x612.jpg" alt="Person 2"></div>
+                            <div class="grid-item"><img src="images/istockphoto-1332972396-612x612.jpg" alt="Person 3"></div>
+                            <div class="grid-item"><img src="images/istockphoto-1412934237-612x612.jpg" alt="Person 4"></div>
+                            <div class="grid-item"><img src="images/istockphoto-1461432890-612x612.jpg" alt="Person 5"></div>
+                            <div class="grid-item"><img src="images/istockphoto-2032812243-612x612.jpg" alt="Person 6"></div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +63,7 @@
                 <h2>How it works</h2>
                 <div class="blocks-section">
                     <div class="block-container">
-                        <h3 class="block-title">Your notes + transcript</h3>
+                        <h3 class="block-title">Listen to a speaker in an unfamiliar language</h3>
                         <div class="block">
                             <div class="block-circles">
                                 <div class="circle red"></div>
@@ -82,7 +81,7 @@
                     <div class="arrow">></div>
                     
                     <div class="block-container">
-                        <h3 class="block-title">Multilingual communication</h3>
+                        <h3 class="block-title">Get live translated notes in a language of your choice</h3>
                         <div class="block">
                             <div class="block-circles">
                                 <div class="circle red"></div>
@@ -90,7 +89,8 @@
                                 <div class="circle green"></div>
                             </div>
                             <div class="block-content">
-                                <div class="note-time">9:19 AM</div>
+                                <div class="note-header typing-text" id="typing-header"></div>
+                                <div class="note-time typing-text" id="typing-time"></div>
                                 <div class="note-body typing-text" id="typing-text"></div>
                             </div>
                         </div>
@@ -100,42 +100,98 @@
         </main>
         
         <script>
-            const texts = [
-                "El equipo de marketing ha dado luz verde al concepto de la campaña \"Aurora\" para el lanzamiento del cuarto trimestre (Q4). Se ha asignado a Alex la tarea de finalizar el creative brief y coordinar con la agencia de diseño externa para el final del día. Se ha programado una reunión de seguimiento para el próximo martes para revisar los conceptos visuales iniciales. El presupuesto preliminar se ha fijado en 75.000 $, pendiente de la aprobación del departamento de finanzas.",
-                "Команда маркетинга одобрила концепцию кампании \"Aurora\" для запуска в четвертом квартале. Алексу поручено до конца дня завершить работу над креативным брифом и скоординировать действия с внешним дизайнерским агентством. Следующая встреча для рассмотрения первоначальных визуальных концепций запланирована на следующий вторник. Предварительный бюджет установлен в размере 75 000 долларов и ожидает утверждения финансовым отделом.",
-                "मार्केटिंग टीम ने Q4 लॉन्च के लिए \"अरोड़ा\" अभियान की अवधारणा को हरी झंडी दे दी है। एलेक्स को दिन के अंत तक क्रिएटिव ब्रीफ को अंतिम रूप देने और बाहरी डिजाइन एजेंसी के साथ समन्वय करने का काम सौंपा गया है। प्रारंभिक विज़ुअल कॉन्सेप्ट की समीक्षा के लिए अगले मंगलवार को एक फॉलो-अप मीटिंग निर्धारित है। प्रारंभिक बजट 75,000 डॉलर निर्धारित किया गया है, जो वित्त विभाग से अनुमोदन के अधीन है।",
-                "A equipe de marketing deu sinal verde para o conceito da campanha \"Aurora\" para o lançamento do quarto trimestre (Q4). Alex foi designado para finalizar o briefing criativo e coordenar com a agência de design externa até o final do dia. Uma reunião de acompanhamento está agendada para a próxima terça-feira para rever os conceitos visuais iniciais. O orçamento preliminar está fixado em $75.000, pendente de aprovação do departamento financeiro."
+            const notes = [
+                {
+                    header: "Proyecto Nightingale: Lanzamiento al Mercado",
+                    time: "9:19 AM",
+                    text: "El equipo de marketing ha dado luz verde al concepto de la campaña \"Aurora\" para el lanzamiento del cuarto trimestre (Q4). Se ha asignado a Alex la tarea de finalizar el creative brief y coordinar con la agencia de diseño externa para el final del día. Se ha programado una reunión de seguimiento para el próximo martes para revisar los conceptos visuales iniciales. El presupuesto preliminar se ha fijado en 75.000 $, pendiente de la aprobación del departamento de finanzas."
+                },
+                {
+                    header: "Проект «Найтингейл»: Запуск на рынок",
+                    time: "9:19 AM",
+                    text: "Команда маркетинга одобрила концепцию кампании \"Aurora\" для запуска в четвертом квартале. Алексу поручено до конца дня завершить работу над креативным брифом и скоординировать действия с внешним дизайнерским агентством. Следующая встреча для рассмотрения первоначальных визуальных концепций запланирована на следующий вторник. Предварительный бюджет установлен в размере 75 000 долларов и ожидает утверждения финансовым отделом."
+                },
+                {
+                    header: "प्रोजेक्ट नाइटिंगेल: गो-टू-मार्केट किकऑफ़",
+                    time: "9:19 AM",
+                    text: "मार्केटिंग टीम ने Q4 लॉन्च के लिए \"अरोड़ा\" अभियान की अवधारणा को हरी झंडी दे दी है। एलेक्स को दिन के अंत तक क्रिएटिव ब्रीफ को अंतिम रूप देने और बाहरी डिजाइन एजेंसी के साथ समन्वय करने का काम सौंपा गया है। प्रारंभिक विज़ुअल कॉन्सेप्ट की समीक्षा के लिए अगले मंगलवार को एक फॉलो-अप मीटिंग निर्धारित है। प्रारंभिक बजट 75,000 डॉलर निर्धारित किया गया है, जो वित्त विभाग से अनुमोदन के अधीन है।"
+                },
+                {
+                    header: "Projeto Nightingale: Lançamento no Mercado",
+                    time: "9:19 AM",
+                    text: "A equipe de marketing deu sinal verde para o conceito da campanha \"Aurora\" para o lançamento do quarto trimestre (Q4). Alex foi designado para finalizar o briefing criativo e coordenar com a agência de design externa até o final do dia. Uma reunião de acompanhamento está agendada para a próxima terça-feira para rever os conceitos visuais iniciais. O orçamento preliminar está fixado em $75.000, pendente de aprovação do departamento financeiro."
+                }
             ];
             
-            let currentTextIndex = 0;
+            let currentNoteIndex = 0;
+            let currentSection = 'header'; // 'header', 'time', 'text'
             let currentCharIndex = 0;
             let isTyping = false;
-            const typingElement = document.getElementById('typing-text');
             
-            function typeText() {
+            const headerElement = document.getElementById('typing-header');
+            const timeElement = document.getElementById('typing-time');
+            const textElement = document.getElementById('typing-text');
+            
+            function typeNote() {
                 if (isTyping) return;
                 
                 isTyping = true;
-                const currentText = texts[currentTextIndex];
+                const currentNote = notes[currentNoteIndex];
+                let currentText = '';
+                let currentElement = null;
+                
+                switch (currentSection) {
+                    case 'header':
+                        currentText = currentNote.header;
+                        currentElement = headerElement;
+                        break;
+                    case 'time':
+                        currentText = currentNote.time;
+                        currentElement = timeElement;
+                        break;
+                    case 'text':
+                        currentText = currentNote.text;
+                        currentElement = textElement;
+                        break;
+                }
                 
                 const typeInterval = setInterval(() => {
                     if (currentCharIndex <= currentText.length) {
-                        typingElement.textContent = currentText.substring(0, currentCharIndex);
+                        currentElement.textContent = currentText.substring(0, currentCharIndex);
                         currentCharIndex++;
                     } else {
                         clearInterval(typeInterval);
-                        setTimeout(() => {
-                            currentCharIndex = 0;
-                            currentTextIndex = (currentTextIndex + 1) % texts.length;
-                            typingElement.textContent = '';
+                        currentCharIndex = 0;
+                        
+                        // Move to next section
+                        if (currentSection === 'header') {
+                            currentSection = 'time';
                             isTyping = false;
-                            typeText();
-                        }, 3000);
+                            setTimeout(typeNote, 300);
+                        } else if (currentSection === 'time') {
+                            currentSection = 'text';
+                            isTyping = false;
+                            setTimeout(typeNote, 300);
+                        } else {
+                            // Finished typing all sections, wait and start next note
+                            setTimeout(() => {
+                                // Clear all elements
+                                headerElement.textContent = '';
+                                timeElement.textContent = '';
+                                textElement.textContent = '';
+                                
+                                // Move to next note
+                                currentNoteIndex = (currentNoteIndex + 1) % notes.length;
+                                currentSection = 'header';
+                                isTyping = false;
+                                typeNote();
+                            }, 3000);
+                        }
                     }
-                }, 50);
+                }, 10); // 5 times faster (was 50ms, now 10ms)
             }
             
-            setTimeout(typeText, 1000);
+            setTimeout(typeNote, 1000);
         </script>
     </body>
 </html>
