@@ -82,7 +82,17 @@
                     
                     <div class="block-container">
                         <h3 class="block-title">Get live translated notes in a language of your choice</h3>
-                        <div class="block">
+                        <div class="block block-translated">
+                            <div class="language-selector">
+                                <button class="language-btn" id="language-btn">English</button>
+                                <div class="language-dropdown" id="language-dropdown">
+                                    <div class="language-option" data-lang="0">English</div>
+                                    <div class="language-option" data-lang="1">Español</div>
+                                    <div class="language-option" data-lang="2">Русский</div>
+                                    <div class="language-option" data-lang="3">हिन्दी</div>
+                                    <div class="language-option" data-lang="4">Português</div>
+                                </div>
+                            </div>
                             <div class="block-content">
                                 <div class="note-header typing-text" id="typing-header"></div>
                                 <div class="note-time typing-text" id="typing-time"></div>
@@ -123,14 +133,51 @@
                 }
             ];
             
+            const languageNames = ['English', 'Español', 'Русский', 'हिन्दी', 'Português'];
+            
             let currentNoteIndex = 0;
-            let currentSection = 'header'; // 'header', 'time', 'text'
+            let currentSection = 'header';
             let currentCharIndex = 0;
             let isTyping = false;
+            let typingInterval = null;
             
             const headerElement = document.getElementById('typing-header');
             const timeElement = document.getElementById('typing-time');
             const textElement = document.getElementById('typing-text');
+            const languageBtn = document.getElementById('language-btn');
+            const languageDropdown = document.getElementById('language-dropdown');
+            
+            // Language selector functionality is now handled by CSS hover
+            
+            // Language option selection
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', (e) => {
+                    const langIndex = parseInt(e.target.dataset.lang);
+                    languageBtn.textContent = languageNames[langIndex];
+                    
+                    // Stop current typing and start new language
+                    stopTyping();
+                    clearAllText();
+                    currentNoteIndex = langIndex;
+                    currentSection = 'header';
+                    currentCharIndex = 0;
+                    setTimeout(() => typeNote(), 300);
+                });
+            });
+            
+            function stopTyping() {
+                if (typingInterval) {
+                    clearInterval(typingInterval);
+                    typingInterval = null;
+                }
+                isTyping = false;
+            }
+            
+            function clearAllText() {
+                headerElement.textContent = '';
+                timeElement.textContent = '';
+                textElement.textContent = '';
+            }
             
             function typeNote() {
                 if (isTyping) return;
@@ -155,12 +202,13 @@
                         break;
                 }
                 
-                const typeInterval = setInterval(() => {
+                typingInterval = setInterval(() => {
                     if (currentCharIndex <= currentText.length) {
                         currentElement.textContent = currentText.substring(0, currentCharIndex);
                         currentCharIndex++;
                     } else {
-                        clearInterval(typeInterval);
+                        clearInterval(typingInterval);
+                        typingInterval = null;
                         currentCharIndex = 0;
                         
                         // Move to next section
@@ -173,24 +221,14 @@
                             isTyping = false;
                             setTimeout(typeNote, 300);
                         } else {
-                            // Finished typing all sections, wait and start next note
-                            setTimeout(() => {
-                                // Clear all elements
-                                headerElement.textContent = '';
-                                timeElement.textContent = '';
-                                textElement.textContent = '';
-                                
-                                // Move to next note
-                                currentNoteIndex = (currentNoteIndex + 1) % notes.length;
-                                currentSection = 'header';
-                                isTyping = false;
-                                typeNote();
-                            }, 3000);
+                            // Finished typing all sections
+                            isTyping = false;
                         }
                     }
-                }, 10); // 5 times faster (was 50ms, now 10ms)
+                }, 10);
             }
             
+            // Start with English by default
             setTimeout(typeNote, 1000);
         </script>
 
