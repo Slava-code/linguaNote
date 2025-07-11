@@ -9,16 +9,18 @@
     <body>
         <header class="header">
             <nav class="header-nav">
-                <img src="images/Gemini_Generated_Image_tsw8ratsw8ratsw8.png" alt="LinguaNote Logo" class="header-logo">
-                <a href="#" class="nav-btn">Pricing</a>
-                <a href="#" class="nav-btn">Download</a>
+                <a href="" class="logo-link">
+                    <img src="images/Gemini_Generated_Image_tsw8ratsw8ratsw8.png" alt="LinguaNote Logo" class="header-logo">
+                </a>
+                <a href="" class="nav-btn">Pricing</a>
+                <a href="" class="nav-btn">Download</a>
             </nav>
         </header>
         
         <main class="main-content">
             <h1 class="main-title fade-in-element">The AI notepad that speaks YOUR language</h1>
             <h2 class="main-subtitle fade-in-element">LinguaNote takes multilingual chaos and creates perfect clarity</h2>
-            <a href="#" class="download-btn scale-in">Download for Mac</a>
+            <a href="" class="download-btn scale-in">Download for Mac</a>
             
             <div class="blocks-section">
                 <div class="block-container slide-in-left">
@@ -139,6 +141,7 @@
             let currentCharIndex = 0;
             let isTyping = false;
             let typingInterval = null;
+            let hasTypedOnce = false;
             
             const headerElement = document.getElementById('typing-header');
             const timeElement = document.getElementById('typing-time');
@@ -160,6 +163,7 @@
                     currentNoteIndex = langIndex;
                     currentSection = 'header';
                     currentCharIndex = 0;
+                    hasTypedOnce = false; // Reset the flag so it can type again
                     setTimeout(() => typeNote(), 300);
                 });
             });
@@ -222,6 +226,7 @@
                         } else {
                             // Finished typing all sections
                             isTyping = false;
+                            hasTypedOnce = true;
                         }
                     }
                 }, 10);
@@ -238,8 +243,8 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate');
                         
-                        // Start typing animation when the typing block comes into view
-                        if (entry.target.id === 'typing-block') {
+                        // Start typing animation when the typing block comes into view (only if it hasn't typed before)
+                        if (entry.target.id === 'typing-block' && !hasTypedOnce) {
                             setTimeout(typeNote, 500);
                         }
                     }

@@ -34,12 +34,17 @@ body {
 }
 
 .header-logo {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     margin-right: 15px;
     object-fit: cover;
-    opacity: 0.95;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.header-logo:hover {
+    transform: scale(1.1);
 }
 
 .nav-btn {
@@ -100,7 +105,8 @@ body {
 }
 
 .download-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.05) !important;
+    transition: all 0.3s ease !important;
 }
 
 .blocks-section {
@@ -519,6 +525,10 @@ body {
 .scale-in.animate {
     opacity: 1;
     transform: scale(1);
+}
+
+.scale-in.animate:hover {
+    transform: translateY(-2px) scale(1.05) !important;
 }
 
 .block-circles {
