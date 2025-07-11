@@ -64,16 +64,16 @@
                 <div class="blocks-section">
                     <div class="block-container">
                         <h3 class="block-title">Listen to a speaker in an unfamiliar language</h3>
-                        <div class="block">
-                            <div class="block-circles">
-                                <div class="circle red"></div>
-                                <div class="circle yellow"></div>
-                                <div class="circle green"></div>
+                        <div class="block listening-block">
+                            <div class="meeting-header">
+                                <span class="meeting-title">Meeting</span>
+                                <div class="recording-indicator"></div>
                             </div>
-                            <div class="block-content">
-                                <div class="note-header">Project Nightingale: Go-to-Market Kickoff</div>
-                                <div class="note-time">9:19 AM</div>
-                                <div class="note-body">The marketing team has greenlit the "Aurora" campaign concept for the Q4 launch. Alex is assigned to finalize the creative brief and coordinate with the external design agency by end of day. A follow-up meeting is scheduled for next Tuesday to review the initial visual concepts. The preliminary budget is set at $75,000, pending approval from finance.</div>
+                            <div class="speaker-container">
+                                <div class="speaker-image">
+                                    <img src="images/gettyimages-1295073567-640x640.jpg" alt="Current speaker">
+                                </div>
+                                <div class="speaker-status">John is currently speaking...</div>
                             </div>
                         </div>
                     </div>
@@ -83,11 +83,6 @@
                     <div class="block-container">
                         <h3 class="block-title">Get live translated notes in a language of your choice</h3>
                         <div class="block">
-                            <div class="block-circles">
-                                <div class="circle red"></div>
-                                <div class="circle yellow"></div>
-                                <div class="circle green"></div>
-                            </div>
                             <div class="block-content">
                                 <div class="note-header typing-text" id="typing-header"></div>
                                 <div class="note-time typing-text" id="typing-time"></div>
@@ -101,6 +96,11 @@
         
         <script>
             const notes = [
+                {
+                    header: "Project Nightingale: Go-to-Market Kickoff",
+                    time: "9:19 AM",
+                    text: "The marketing team has greenlit the \"Aurora\" campaign concept for the Q4 launch. Alex is assigned to finalize the creative brief and coordinate with the external design agency by end of day. A follow-up meeting is scheduled for next Tuesday to review the initial visual concepts. The preliminary budget is set at $75,000, pending approval from finance."
+                },
                 {
                     header: "Proyecto Nightingale: Lanzamiento al Mercado",
                     time: "9:19 AM",
