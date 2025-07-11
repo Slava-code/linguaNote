@@ -395,12 +395,15 @@ body {
 }
 
 .tagline {
-    font-weight:  bold;
-    font-size: 1.3rem !important;
+    font-weight: bold;
     font-style: italic;
+    font-size: 1.6rem !important;
     text-align: center;
     color: #2269b6 !important;
-    margin: 20px 0 30px !important;
+    margin: 25px 0 !important;
+    padding: 20px;
+    background: rgba(50, 205, 50, 0.1);
+    border-radius: 10px;
 }
 
 .quote {
@@ -638,4 +641,39 @@ body {
 .slide-up-element.animate {
     opacity: 1;
     transform: translateY(0);
+}
+
+.centered-heading {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.floating-blocks-container {
+    background-color: #f8f8f8;
+    position: relative;
+    height: 300px;
+    margin: 40px 0;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.floating-block {
+    position: absolute;
+    background-color: #90EE90;
+    color: #333;
+    padding: 12px 18px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.floating-block:hover {
+    transform: scale(1.05);
+}
+
+.content-section .much-more {
+    color: #6e6868;
 }
