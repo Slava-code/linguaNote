@@ -30,6 +30,11 @@
                             <div class="circle yellow"></div>
                             <div class="circle green"></div>
                         </div>
+                        <div class="block-content">
+                            <div class="note-header">Q3 Product Strategy Sync</div>
+                            <div class="note-time">8:53 AM</div>
+                            <div class="note-body">The team aligned on prioritizing the mobile user experience for the upcoming development cycle. Sarah presented data showing a 45% increase in mobile logins, underscoring the need for a more intuitive interface. The main action item is for the design team to present three initial mockups by next Friday's meeting, focusing on a simplified navigation flow and faster load times. The primary success metric will be a reduction in the mobile bounce rate by at least 15% post-launch.</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -37,15 +42,100 @@
                 
                 <div class="block-container">
                     <h3 class="block-title">Multilingual communication</h3>
-                    <div class="block">
+                    <div class="block right">
                         <div class="block-circles">
                             <div class="circle red"></div>
                             <div class="circle yellow"></div>
                             <div class="circle green"></div>
                         </div>
+                        <div class="block-grid">
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                            <div class="grid-item"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="how-it-works">
+                <h2>How it works</h2>
+                <div class="blocks-section">
+                    <div class="block-container">
+                        <h3 class="block-title">Your notes + transcript</h3>
+                        <div class="block">
+                            <div class="block-circles">
+                                <div class="circle red"></div>
+                                <div class="circle yellow"></div>
+                                <div class="circle green"></div>
+                            </div>
+                            <div class="block-content">
+                                <div class="note-header">Project Nightingale: Go-to-Market Kickoff</div>
+                                <div class="note-time">9:19 AM</div>
+                                <div class="note-body">The marketing team has greenlit the "Aurora" campaign concept for the Q4 launch. Alex is assigned to finalize the creative brief and coordinate with the external design agency by end of day. A follow-up meeting is scheduled for next Tuesday to review the initial visual concepts. The preliminary budget is set at $75,000, pending approval from finance.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">></div>
+                    
+                    <div class="block-container">
+                        <h3 class="block-title">Multilingual communication</h3>
+                        <div class="block">
+                            <div class="block-circles">
+                                <div class="circle red"></div>
+                                <div class="circle yellow"></div>
+                                <div class="circle green"></div>
+                            </div>
+                            <div class="block-content">
+                                <div class="note-time">9:19 AM</div>
+                                <div class="note-body typing-text" id="typing-text"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
+        
+        <script>
+            const texts = [
+                "El equipo de marketing ha dado luz verde al concepto de la campaña \"Aurora\" para el lanzamiento del cuarto trimestre (Q4). Se ha asignado a Alex la tarea de finalizar el creative brief y coordinar con la agencia de diseño externa para el final del día. Se ha programado una reunión de seguimiento para el próximo martes para revisar los conceptos visuales iniciales. El presupuesto preliminar se ha fijado en 75.000 $, pendiente de la aprobación del departamento de finanzas.",
+                "Команда маркетинга одобрила концепцию кампании \"Aurora\" для запуска в четвертом квартале. Алексу поручено до конца дня завершить работу над креативным брифом и скоординировать действия с внешним дизайнерским агентством. Следующая встреча для рассмотрения первоначальных визуальных концепций запланирована на следующий вторник. Предварительный бюджет установлен в размере 75 000 долларов и ожидает утверждения финансовым отделом.",
+                "मार्केटिंग टीम ने Q4 लॉन्च के लिए \"अरोड़ा\" अभियान की अवधारणा को हरी झंडी दे दी है। एलेक्स को दिन के अंत तक क्रिएटिव ब्रीफ को अंतिम रूप देने और बाहरी डिजाइन एजेंसी के साथ समन्वय करने का काम सौंपा गया है। प्रारंभिक विज़ुअल कॉन्सेप्ट की समीक्षा के लिए अगले मंगलवार को एक फॉलो-अप मीटिंग निर्धारित है। प्रारंभिक बजट 75,000 डॉलर निर्धारित किया गया है, जो वित्त विभाग से अनुमोदन के अधीन है।",
+                "A equipe de marketing deu sinal verde para o conceito da campanha \"Aurora\" para o lançamento do quarto trimestre (Q4). Alex foi designado para finalizar o briefing criativo e coordenar com a agência de design externa até o final do dia. Uma reunião de acompanhamento está agendada para a próxima terça-feira para rever os conceitos visuais iniciais. O orçamento preliminar está fixado em $75.000, pendente de aprovação do departamento financeiro."
+            ];
+            
+            let currentTextIndex = 0;
+            let currentCharIndex = 0;
+            let isTyping = false;
+            const typingElement = document.getElementById('typing-text');
+            
+            function typeText() {
+                if (isTyping) return;
+                
+                isTyping = true;
+                const currentText = texts[currentTextIndex];
+                
+                const typeInterval = setInterval(() => {
+                    if (currentCharIndex <= currentText.length) {
+                        typingElement.textContent = currentText.substring(0, currentCharIndex);
+                        currentCharIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                        setTimeout(() => {
+                            currentCharIndex = 0;
+                            currentTextIndex = (currentTextIndex + 1) % texts.length;
+                            typingElement.textContent = '';
+                            isTyping = false;
+                            typeText();
+                        }, 3000);
+                    }
+                }, 50);
+            }
+            
+            setTimeout(typeText, 1000);
+        </script>
     </body>
 </html>
