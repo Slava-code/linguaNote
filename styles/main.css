@@ -262,11 +262,14 @@ body {
 .language-selector {
     position: relative;
     padding: 15px 20px 0;
+    display: flex;
+    justify-content: center;
 }
 
-.language-selector:hover .language-dropdown {
+.language-btn:hover + .language-dropdown,
+.language-dropdown:hover {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     visibility: visible;
 }
 
@@ -296,7 +299,8 @@ body {
 .language-dropdown {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
     background: #007AFF;
     border: none;
     border-radius: 10px;
@@ -305,9 +309,8 @@ body {
     min-width: 120px;
     margin-top: 0;
     opacity: 0;
-    transform: translateY(-10px);
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.15s ease;
 }
 
 .language-option {
