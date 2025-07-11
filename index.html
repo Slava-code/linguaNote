@@ -266,13 +266,13 @@
             });
 
             // Observe all elements with animation classes
-            document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+            document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in, .slide-up-element').forEach(el => {
                 observer.observe(el);
             });
 
             // Re-observe elements after DOM content is loaded
             setTimeout(() => {
-                document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
+                document.querySelectorAll('.fade-in-element, .slide-in-left, .slide-in-right, .scale-in, .slide-up-element').forEach(el => {
                     observer.observe(el);
                 });
             }, 100);
@@ -393,6 +393,12 @@
                     </tr>
                 </tbody>
             </table>
+        </section>
+        
+        <section class="cta-section slide-up-element">
+            <h1 class="cta-title">Want to break the language barrier?</h1>
+            <h2 class="cta-subtitle">Join our international community. First 10 hours of use are completely free.</h2>
+            <a href="" class="download-btn">Download LinguaNote</a>
         </section>
     </body>
 </html>

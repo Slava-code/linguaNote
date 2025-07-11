@@ -605,3 +605,37 @@ body {
         font-size: 1.2rem;
     }
 }
+
+.cta-section {
+    background-color: #f8f8f8;
+    padding: 80px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.cta-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 40px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.slide-up-element {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.slide-up-element.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
